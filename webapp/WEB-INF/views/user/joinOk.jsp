@@ -89,7 +89,7 @@
 
 
 		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
+			Copyright ⓒ 2022 유지은. All right reserved
 		</div>
 		<!-- //footer -->
 

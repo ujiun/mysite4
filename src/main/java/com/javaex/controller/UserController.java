@@ -36,6 +36,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
+	//로그인
 	@RequestMapping(value = "user/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		System.out.println("UserController>loginForm()");
