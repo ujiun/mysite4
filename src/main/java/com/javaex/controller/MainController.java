@@ -20,10 +20,5 @@ public class MainController {
 		return "/main/index";
 	}
 	
-	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String loginForm() {
-		System.out.println("MainController.loginForm()");
-	
-		return "/user/loginForm";
-	}
+
 }

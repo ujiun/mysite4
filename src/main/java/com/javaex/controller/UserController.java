@@ -22,10 +22,10 @@ public class UserController {
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController>join()");
 		
-		userService.join(userVo);
+		int count = userService.join(userVo);
+		System.out.println("UserController: " + count);
 		
-		
-		return "";
+		return "user/joinOk";
 	}
 	
 	//회원가입폼
@@ -34,6 +34,13 @@ public class UserController {
 		System.out.println("UserController>joinForm()");
 		
 		return "user/joinForm";
+	}
+	
+	@RequestMapping(value = "user/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String loginForm() {
+		System.out.println("UserController>loginForm()");
+	
+		return "user/loginForm";
 	}
 
 }
