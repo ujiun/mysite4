@@ -35,5 +35,23 @@ public class UserDao {
 		
 		return authUser;
 	}
+	
+	//수정폼(한명 정보 가져오기)
+	public UserVo getUser(int no) {
+		System.out.println("UserService>getUser()");
+		
+		UserVo userVo= sqlSession.selectOne("user.getUser2", no);
+		
+		return userVo;
+	}
+	
+	//수정
+	public int update(UserVo userVo) {
+		System.out.println("UserService>update()");
+		
+		int count = sqlSession.update("user.update", userVo);
+		
+		return count;
+	}
 
 }

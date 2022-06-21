@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,7 @@ public class UserController {
 	//필드
 	@Autowired
 	UserService userService;
-	
-	
+
 	
 	//회원가입
 	@RequestMapping(value = "user/join", method = {RequestMethod.GET, RequestMethod.POST})
@@ -68,5 +68,42 @@ public class UserController {
 		
 		
 	}
-
+	
+	//로그아웃
+	@RequestMapping(value = "user/logout", method = { RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController>logout()");
+		
+		session.removeAttribute("authUSer");
+		session.invalidate();
+		
+		return "redirect:/main";
+	}
+	
+	//회원정보수정폼
+	@RequestMapping(value = "user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(HttpSession session, Model model) {
+		System.out.println("UserController>modifyForm()");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		int no = authUser.getNo();
+		
+		UserVo userVo = userService.getUser(no);
+		
+		model.addAttribute("userVo", userVo);
+		
+		return "user/modifyForm";
+	}
+	
+	//회원정보수정
+	@RequestMapping(value = "user/modify", method = { RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute UserVo userVo) {
+		System.out.println("UserController>modify()");
+		
+		userService.modify(userVo);
+		
+		return "redirect:/main";
+	}
+	
 }

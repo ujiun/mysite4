@@ -39,4 +39,22 @@ public class UserService {
 		return authUser;
 	}
 	
+	//수정폼(한명 정보 가져오기)
+	public UserVo getUser(int no) {
+		System.out.println("UserService>getUser()");
+		
+		UserVo userVo= userDao.getUser(no);
+		
+		return userVo;
+	}
+	
+	//수정
+	public int modify(UserVo userVo) {
+		System.out.println("UserService>modify()");
+		
+		int count =userDao.update(userVo);
+		
+		return count;
+	}
+	
 }
