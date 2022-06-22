@@ -38,8 +38,8 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	//sherch(-ing) 
-	@RequestMapping(value="/sherch", method= { RequestMethod.GET, RequestMethod.POST })
+	//search(-ing) 
+	@RequestMapping(value="/search", method= { RequestMethod.GET, RequestMethod.POST })
 	public String search(@RequestParam(value = "keyword", required=false, defaultValue="-1") String keyword) {
 		System.out.println("BoardController>search()");
 		
