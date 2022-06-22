@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -50,7 +50,7 @@
 	
 				<div id="user">
 					<div id="modifyForm">
-						<form action="/mysite4/user/modify" method="get">
+						<form action="${pageContext.request.contextPath }/user/modify" method="get">
 						<input type="text" name="no" value="${userVo.no }">
 							<!-- 아이디 -->
 							<div class="form-group">
