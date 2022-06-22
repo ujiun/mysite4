@@ -28,6 +28,8 @@ public class BoardService {
 		return bList;
 	}
 	
+	
+	
 	//read + upHit
 	public BoardVo getBoard(int no) {
 		System.out.println("BoardService>getboard()");

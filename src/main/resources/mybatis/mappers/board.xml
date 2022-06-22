@@ -4,7 +4,7 @@
 <mapper namespace="board">
 	
 	<!-- 전체리스트 가져오기 -->
-	<select id="selectList" resultType="com.javaex.vo.BoardVo">
+	<select id="selectList" parameterType="String" resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			select  b.no,
      			    b.title,
@@ -15,7 +15,6 @@
 			from board b, users u
 			where b.user_no = u.no
 			order by no desc
-		
 		]]>
 	</select>
 	

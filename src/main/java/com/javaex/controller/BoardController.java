@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -29,12 +30,22 @@ public class BoardController {
 	@RequestMapping(value="/list", method= { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
 		System.out.println("BoardController>list()");
-		
+
 		List<BoardVo> bList= boardService.getList();
 		
 		model.addAttribute("bList", bList);
 		
 		return "board/list";
+	}
+	
+	//sherch(-ing)
+	@RequestMapping(value="/sherch", method= { RequestMethod.GET, RequestMethod.POST })
+	public String search(@RequestParam(value = "keyword", required=false, defaultValue="-1") String keyword) {
+		System.out.println("BoardController>search()");
+		
+		System.out.println(keyword);
+
+		return "redirect:list";
 	}
 	
 	//writeForm
@@ -52,7 +63,7 @@ public class BoardController {
 		System.out.println("BoardController>write()");
 		
 		
-		int count = boardService.write(boardVo);
+		boardService.write(boardVo);
 		
 		return "redirect:list";
 	}
@@ -100,5 +111,6 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
 	
 }

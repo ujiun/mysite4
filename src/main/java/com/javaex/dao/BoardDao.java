@@ -21,11 +21,12 @@ public class BoardDao {
 	//list
 	public List<BoardVo> getList() {
 		System.out.println("BoardDao>getList()");
-		
+
 		List<BoardVo> bList = sqlSession.selectList("board.selectList");
-		
+
 		return bList;
 	}
+	
 	
 	//read
 	public BoardVo getBoard(int no) {
