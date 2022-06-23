@@ -20,14 +20,13 @@ public class BoardService {
 	//메소드-일반
 	
 	//list
-	public List<BoardVo> getList() {
+	public List<BoardVo> getList(String keyword) {
 		System.out.println("BoardService>getList()");
 		
-		List<BoardVo> bList = boardDao.getList();
+		List<BoardVo> bList = boardDao.getList(keyword);
 		
 		return bList;
 	}
-	
 	
 	
 	//read + upHit

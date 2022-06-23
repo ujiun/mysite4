@@ -19,14 +19,14 @@ public class BoardDao {
 	//메소드-일반
 	
 	//list
-	public List<BoardVo> getList() {
+	public List<BoardVo> getList(String keyword) {
 		System.out.println("BoardDao>getList()");
-
-		List<BoardVo> bList = sqlSession.selectList("board.selectList");
-
+		System.out.println(keyword);
+		List<BoardVo> bList = sqlSession.selectList("board.selectList", keyword);
+		
 		return bList;
 	}
-	
+
 	
 	//read
 	public BoardVo getBoard(int no) {

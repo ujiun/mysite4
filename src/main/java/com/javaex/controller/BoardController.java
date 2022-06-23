@@ -28,25 +28,16 @@ public class BoardController {
 	
 	//list
 	@RequestMapping(value="/list", method= { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model) {
+	public String list(Model model, @RequestParam(value = "keyword", required=false, defaultValue="") String keyword) {
 		System.out.println("BoardController>list()");
-
-		List<BoardVo> bList= boardService.getList();
+		
+		List<BoardVo> bList= boardService.getList(keyword);
 		
 		model.addAttribute("bList", bList);
 		
 		return "board/list";
 	}
 	
-	//search(-ing) 
-	@RequestMapping(value="/search", method= { RequestMethod.GET, RequestMethod.POST })
-	public String search(@RequestParam(value = "keyword", required=false, defaultValue="-1") String keyword) {
-		System.out.println("BoardController>search()");
-		
-		System.out.println(keyword);
-
-		return "redirect:list";
-	}
 	
 	//writeForm
 	@RequestMapping(value="/writeForm", method= { RequestMethod.GET, RequestMethod.POST })
