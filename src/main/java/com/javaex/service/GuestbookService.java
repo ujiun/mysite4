@@ -60,4 +60,22 @@ public class GuestbookService {
 		return gvo;
 	}
 	
+	//방명록 삭제
+	public String removeGuest(GuestbookVo vo) {
+		System.out.println("GuestbookService>removeGuest()");
+		
+		String state;
+		
+		int count = guestbookDao.guestDelete(vo);
+		
+		if(count>0) {
+			state = "success";
+	
+		}else {
+			state = "fail";
+		}
+		
+		return state;
+	}
+	
 }

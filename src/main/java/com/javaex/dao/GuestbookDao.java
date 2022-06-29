@@ -58,10 +58,16 @@ public class GuestbookDao {
 	public GuestbookVo getGuest(int no) {
 		System.out.println("GuestbookDao>getGuest()");
 		
-		GuestbookVo gVo = sqlSession.selectOne("guestbook.getGuest", no);
+		sqlSession.selectOne("guestbook.getGuest", no);
 		
-		return gVo;
+		return sqlSession.selectOne("guestbook.getGuest", no);
 	}
 	
+	//방명록 삭제
+	public int guestDelete(GuestbookVo vo) {
+		System.out.println("GuestbookDao>guestDelete()");
+		
+		return sqlSession.delete("guestbook.delete", vo);
+	}
 	
 }

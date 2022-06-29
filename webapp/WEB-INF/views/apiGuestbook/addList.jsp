@@ -120,8 +120,8 @@
         <p>One fine body&hellip;</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button id="btnModalDel" type="button" class="btn btn-danger">삭제</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -139,6 +139,7 @@ $(document).ready(function(){
 	/* 리스트 요청+그리기 */
 	fetchList()
 });
+
 /* 저장버튼을 클릭했을때 */
 $("#btnSubmit").on("click", function(){
 	console.log("저장버튼 클릭");
@@ -189,7 +190,7 @@ $("#listArea").on("click", ".btnDel", function(){
 	console.log(no);
 	
 	//모달창 form에 no값 입력
-	$('#delModal [name="password"]').val("dfdf");	//id값 주는것도 가능
+	$('#delModal [name="password"]').val("");	//id값 주는것도 가능
 	$('[name="no"]').val(no);
 	
 	//모달창 띄우기
@@ -198,6 +199,68 @@ $("#listArea").on("click", ".btnDel", function(){
 });
 
 
+/*모달창 삭제버튼 클릭할때*/
+$("#btnModalDel").on("click", function(){
+	console.log("모달창 삭제버튼 클릭");
+	
+	//데이터모으기
+	var password = $('#delModal [name="password"]').val();
+	var no = $('[name="no"]').val();
+	
+	
+	var guestbookVo = {
+		password: password,
+		no: no
+	};
+	
+	/*
+	var guestbookVo = {};
+	guestbookVo.password = password;
+	guestbookVo.no = no;
+	*/
+	console.log(guestbookVo);
+	
+	
+	
+	//서버로 데이터 전송
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath }/api/guestbook/remove",		
+		type : "post",
+		//contentType : "application/json",
+		data : guestbookVo,
+
+		dataType : "json",
+		success : function(result){
+			/*성공시 처리해야될 코드 작성*/
+			console.log(result);
+			
+		
+			//성공이면 지우고
+			if(result == "success") {
+				$("#t"+no).remove();
+				$("#delModal").modal("hide");
+			}else {
+				$("#delModal").modal("hide");
+				alert("비밀번호를 확인하세요");
+			}
+			
+			
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+	
+	
+	//성공이면 리스트에서 제거하기
+	
+	
+	//모달창 닫기
+	
+});
 
 
 /* 리스트 요청 */
@@ -226,7 +289,7 @@ function render(guestbookVo, opt){
 	console.log("render()");
 	
 	var str = '';
-	str += '<table class="guestRead">' ;
+	str += '<table id="t'+ guestbookVo.no +'"class="guestRead">' ;
 	str += '    <colgroup>' ;
 	str += '        <col style="width: 10%;">' ;
 	str += '        <col style="width: 40%;">' ;
