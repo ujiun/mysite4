@@ -6,16 +6,18 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.FileDao;
 import com.javaex.vo.FileVo;
 
 @Service
 public class FileService {
 	
-	//@Autowired
-	//private FileDao fileDao;
+	@Autowired
+	private FileDao fileDao;
 	
 	
 	//파일하드디스크 저장, 파일 정보(DB저장) 추출
@@ -50,6 +52,9 @@ public class FileService {
 		System.out.println(fileVo);
 		
 		//-->dao DB저장 -->과제
+		int count = fileDao.add(fileVo);
+		
+		System.out.println(count + "건 저장하였습니다.");
 		
 		//(2)오리지날파일명, 저장경로+파일(랜덤)명, 파일사이즈
 		try {
