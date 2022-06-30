@@ -140,7 +140,8 @@ $(document).ready(function(){
 	fetchList()
 });
 
-/* 저장버튼을 클릭했을때 */
+/*저장버튼을 클릭했을 때*/
+
 $("#btnSubmit").on("click", function(){
 	console.log("저장버튼 클릭");
 	
@@ -156,15 +157,18 @@ $("#btnSubmit").on("click", function(){
 		content: content
 	};
 	
+	console.log(guestVo);
+	
 	$.ajax({
 		
-		/* url : "${pageContext.request.contextPath }/api/guestbook/add?name="+name+"&password="+password+"&content="+content,	 */
-		url : "${pageContext.request.contextPath }/api/guestbook/add",		
+		url : "${pageContext.request.contextPath }/api/guestbook/add2",		
 		type : "post",
-		//contentType : "application/json",
-		data : guestVo,   //파라미터 정리된다
+		contentType : "application/json",
+		data : JSON.stringify(guestVo),   //js객체를 JSON문자열로 변경
+		
 		dataType : "json",
 		success : function(gVo){
+			
 			/* 1개데이터 리스트 추가(그리기)하기 */
 			render(gVo, "up");
 			
@@ -178,6 +182,8 @@ $("#btnSubmit").on("click", function(){
 			console.error(status + " : " + error);
 		}
 	});
+	
+	
 });
 
 
