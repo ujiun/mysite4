@@ -306,7 +306,7 @@ function render(guestbookVo, opt){
 	str += '        <td>'+ guestbookVo.no +'</td>' ;
 	str += '        <td>'+ guestbookVo.name +'</td>' ;
 	str += '        <td>'+ guestbookVo.regDate +'</td>' ;
-	str += '        <td><button class="btnDel" type="button" data-no="'+ guestbookVo.no +'">삭제</button></td>' ;
+	str += '        <td><button class="btnDel" type="button" data-no="'+ guestbookVo.no +'">삭제</button></td>' ; //data-personid -->대문자 인식x only 소문자
 	str += '    </tr>' ;
 	str += '    <tr>' ;
 	str += '        <td colspan=4 class="text-left">'+guestbookVo.content+'</td>' ;
