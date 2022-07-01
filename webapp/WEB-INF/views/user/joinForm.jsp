@@ -9,6 +9,9 @@
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
 
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -50,7 +53,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="${pageContext.request.contextPath }/user/join" method="get">
+						<form id="join-Form" action="${pageContext.request.contextPath }/user/join" method="get">
 	
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -114,5 +117,50 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+
+$("#join-Form").on("submit", function(){
+	console.log("회원가입 버튼 클릭");
+	
+	
+	var id = $("#input-uid").val();
+	var password = $("#input-pass").val();
+	
+	
+	if(id == "" || id == null){
+		alert("아이디를 입력해주세요");
+		return false;
+	}
+	
+	if(id == "" || id == null){
+		alert("패스워드를 입력해주세요");
+		return false;
+	}
+	
+	if(password.length < 8) {
+		alert("패스워드를 체크해주세요")
+		return false;
+		
+	}
+	
+	//약관동의
+	var agree = $("#chk-agree").is(":checked");
+	if(agree == false) {
+		alert("약관에 동의해주세요")
+		return false;
+		
+	}
+	
+	
+	return true;
+	
+	
+});
+
+
+
+</script>
+
 
 </html>
