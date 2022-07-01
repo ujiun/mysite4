@@ -18,8 +18,9 @@ public class GalleryVo {
 	}
 
 
-	public GalleryVo(int userNo, String orgName, String saveName, String filePath, long fileSize) {
+	public GalleryVo(int userNo, String content, String orgName, String saveName, String filePath, long fileSize) {
 		this.userNo = userNo;
+		this.content = content;
 		this.orgName = orgName;
 		this.saveName = saveName;
 		this.filePath = filePath;

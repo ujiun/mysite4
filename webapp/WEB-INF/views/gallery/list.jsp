@@ -97,7 +97,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="form-text">글작성</label>
-							<input id="addModalContent" type="text" name="" value="" >
+							<input id="addModalContent" type="text" name="content" value="" >
 						</div>
 						<div class="form-group">
 							<label class="form-text">이미지선택</label>
@@ -161,8 +161,17 @@ $("#btnImgUpload").on("click", function(){
 	
 	//모달창 띄우기
 	$("#addModal").modal("show");
-})
+});
 
+
+/* 이미지 클릭했을 때*/
+$(".view").on("click", function(){
+	console.log("이미지 클릭");
+	
+	//모달창 띄우기
+	$("#viewModal").modal("show");
+	
+});
 
 
 </script>

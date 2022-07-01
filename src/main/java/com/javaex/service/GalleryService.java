@@ -21,7 +21,7 @@ public class GalleryService {
 	private GalleryDao galleryDao;
 	
 	//파일하드디스크 저장, 파일정보(DB저장) 추출
-	public void save(MultipartFile file, int userNo) {
+	public void save(MultipartFile file, int userNo, String content) {
 		System.out.println("GalleryService>save()");
 		
 		String saveDir = "C:\\javaStudy\\upload";
@@ -42,7 +42,7 @@ public class GalleryService {
 		long fileSize = file.getSize();
 		
 		//Vo로 묶기
-		GalleryVo galleryVo= new GalleryVo(userNo, orgName, saveName, filePath, fileSize);
+		GalleryVo galleryVo= new GalleryVo(userNo, content, orgName, saveName, filePath, fileSize);
 		System.out.println(galleryVo);
 		
 		//-->dao DB저장

@@ -37,14 +37,14 @@ public class GalleryController {
 	
 	//업로드
 	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String upload(@RequestParam("file") MultipartFile file, HttpSession session) {
+	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("content") String content, HttpSession session) {
 		System.out.println("GalleryController>add");
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
 		int userNo = authUser.getNo();
 		
-		galleryservice.save(file, userNo);
+		galleryservice.save(file, userNo, content);
 		
 		
 		return "redirect:list";

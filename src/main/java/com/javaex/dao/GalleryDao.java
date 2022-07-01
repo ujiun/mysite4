@@ -23,7 +23,7 @@ public class GalleryDao {
 		return count;
 	}
 
-	// 파일리스트 가져오기
+	// 갤러리리스트 가져오기
 	public List<GalleryVo> getList() {
 		System.out.println("GalleryDao>getList");
 		
