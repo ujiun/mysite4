@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class GalleryService {
 	private FileDao fileDao;
 	
 	//파일하드디스크 저장, 파일정보(DB저장) 추출
-	public String save(MultipartFile file) {
+	public void save(MultipartFile file) {
 		System.out.println("GalleryService>save()");
 		
 		String saveDir = "C:\\javaStudy\\upload";
@@ -64,7 +65,17 @@ public class GalleryService {
 			e.printStackTrace();
 		}
 		
-		return saveName;
+		
+	}
+	
+	//리스트가져오기
+	public List<FileVo> getList() {
+		System.out.println("GalleryService>getList()");
+		
+		List<FileVo> fileList= fileDao.getList();
+		
+		return fileList;
+		
 	}
 	
 }

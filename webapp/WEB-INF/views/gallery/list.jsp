@@ -53,16 +53,17 @@
 						</c:if>
 						<div class="clear"></div>
 
-			
 					<ul id="viewArea">
 						
 						<!-- 이미지반복영역 -->
+						<c:forEach items="${fileList }" var="fileVo">
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${requestScope.saveName" }>
-									<div class="imgWriter">작성자: <strong>유재석</strong></div>
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${fileVo.saveName }" >
+									<div class="imgWriter">작성자: <strong>@@@@@@@</strong></div>
 								</div>
 							</li>
+						</c:forEach>
 						<!-- 이미지반복영역 -->
 						
 						

@@ -12,5 +12,13 @@
 	
 	</insert>
 	
+	<select id="selectList" resultType="com.javaex.vo.FileVo">
+		<![CDATA[
+			select saveName
+			from files
+		]]>
+	
+	</select>
+	
 	
 </mapper>
