@@ -11,17 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.javaex.dao.FileDao;
-import com.javaex.vo.FileVo;
+import com.javaex.dao.GalleryDao;
+import com.javaex.vo.GalleryVo;
 
 @Service
 public class GalleryService {
 	
 	@Autowired
-	private FileDao fileDao;
+	private GalleryDao galleryDao;
 	
 	//파일하드디스크 저장, 파일정보(DB저장) 추출
-	public void save(MultipartFile file) {
+	public void save(MultipartFile file, int userNo) {
 		System.out.println("GalleryService>save()");
 		
 		String saveDir = "C:\\javaStudy\\upload";
@@ -42,11 +42,11 @@ public class GalleryService {
 		long fileSize = file.getSize();
 		
 		//Vo로 묶기
-		FileVo fileVo = new FileVo(orgName, saveName, filePath, fileSize);
-		System.out.println(fileVo);
+		GalleryVo galleryVo= new GalleryVo(userNo, orgName, saveName, filePath, fileSize);
+		System.out.println(galleryVo);
 		
 		//-->dao DB저장
-		int count = fileDao.add(fileVo);
+		int count = galleryDao.add(galleryVo);
 		
 		System.out.println(count + "건 저장하였습니다.");
 		
@@ -69,12 +69,12 @@ public class GalleryService {
 	}
 	
 	//리스트가져오기
-	public List<FileVo> getList() {
+	public List<GalleryVo> getList() {
 		System.out.println("GalleryService>getList()");
 		
-		List<FileVo> fileList= fileDao.getList();
+		List<GalleryVo> galleryList= galleryDao.getList();
 		
-		return fileList;
+		return galleryList;
 		
 	}
 	

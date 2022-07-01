@@ -23,12 +23,5 @@ public class FileDao {
 		return count;
 	}
 	
-	//파일리스트 가져오기
-	public List<FileVo> getList() {
-		
-		List<FileVo> fileList = sqlSession.selectList("file.selectList");
-		
-		return fileList;
-	}
 	
 }

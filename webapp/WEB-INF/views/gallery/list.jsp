@@ -56,11 +56,11 @@
 					<ul id="viewArea">
 						
 						<!-- 이미지반복영역 -->
-						<c:forEach items="${fileList }" var="fileVo">
+						<c:forEach items="${galleryList }" var="galleryVo">
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${fileVo.saveName }" >
-									<div class="imgWriter">작성자: <strong>@@@@@@@</strong></div>
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName }" >
+									<div class="imgWriter">작성자: <strong>${galleryVo.userName }</strong></div>
 								</div>
 							</li>
 						</c:forEach>
