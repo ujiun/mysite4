@@ -127,7 +127,7 @@
 				<div class="modal-body">
 					
 					<div class="formgroup" >
-						<img id="viewModelImg" src = "/mysite/upload/1656706343451637b8d5d-071e-42e1-8587-ffdf3279b840.jpg"> <!-- ajax로 처리 : 이미지출력 위치-->
+						<img id="viewModelImg" src = ""> <!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 					
 					<div class="formgroup">
@@ -138,7 +138,7 @@
 				<form method="" action="">
 					<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
+					<button  type="button" class="btn btn-danger" id="btnDel">삭제</button>
 				</div>
 				
 				
@@ -156,31 +156,7 @@
 $(document).ready(function(){
 	console.log("jquery로 요청");
 	
-	$.ajax({
-		
-		url : "${pageContext.request.contextPath }/gallery/imglist",		
-		type : "post",
-		//contentType : "application/json",
-		//data : {name: ”홍길동"},
 
-		dataType : "json",
-		success : function(result){
-			/*성공시 처리해야될 코드 작성*/
-			
-			console.log(result)
-			
-			console.log(result[0].saveName)
-
-			for(var i=0; i<result.length; i++){
-				var imgg = ("${pageContext.request.contextPath }/upload/" + result[i].saveName)
-				
-				$(".formgroup" > "src")
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
 
 });
 

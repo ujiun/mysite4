@@ -50,18 +50,7 @@ public class GalleryController {
 		
 		return "redirect:list";
 	}
-	
-	//savaName 데이터 리스트(ajax)
-	@ResponseBody
-	@RequestMapping(value = "/imglist", method = {RequestMethod.GET, RequestMethod.POST} )
-	public List<GalleryVo> imglist() {
-		System.out.println("GalleryController>imglist");
-		List<GalleryVo> galleryList = galleryservice.getList();
-		
-		
-		
-		return galleryList;
-	}
+
 	
 	
 }
