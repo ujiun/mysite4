@@ -127,7 +127,7 @@
 				<div class="modal-body">
 					
 					<div class="formgroup" >
-						<img id="viewModelImg" src =""> <!-- ajax로 처리 : 이미지출력 위치-->
+						<img id="viewModelImg" src = "/mysite/upload/1656706343451637b8d5d-071e-42e1-8587-ffdf3279b840.jpg"> <!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 					
 					<div class="formgroup">
@@ -153,6 +153,37 @@
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+	console.log("jquery로 요청");
+	
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath }/gallery/imglist",		
+		type : "post",
+		//contentType : "application/json",
+		//data : {name: ”홍길동"},
+
+		dataType : "json",
+		success : function(result){
+			/*성공시 처리해야될 코드 작성*/
+			
+			console.log(result)
+			
+			console.log(result[0].saveName)
+
+			for(var i=0; i<result.length; i++){
+				var imgg = ("${pageContext.request.contextPath }/upload/" + result[i].saveName)
+				
+				$(".formgroup" > "src")
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+});
+
 
 
 /* 이미지올리기버튼을 눌렀을때 */
@@ -165,8 +196,12 @@ $("#btnImgUpload").on("click", function(){
 
 
 /* 이미지 클릭했을 때*/
-$(".view").on("click", function(){
+$(".imgItem").on("click", function(){
 	console.log("이미지 클릭");
+		
+	
+	
+	
 	
 	//모달창 띄우기
 	$("#viewModal").modal("show");

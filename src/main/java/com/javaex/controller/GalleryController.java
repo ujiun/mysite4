@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.GalleryService;
@@ -49,5 +50,18 @@ public class GalleryController {
 		
 		return "redirect:list";
 	}
+	
+	//savaName 데이터 리스트(ajax)
+	@ResponseBody
+	@RequestMapping(value = "/imglist", method = {RequestMethod.GET, RequestMethod.POST} )
+	public List<GalleryVo> imglist() {
+		System.out.println("GalleryController>imglist");
+		List<GalleryVo> galleryList = galleryservice.getList();
+		
+		
+		
+		return galleryList;
+	}
+	
 	
 }
