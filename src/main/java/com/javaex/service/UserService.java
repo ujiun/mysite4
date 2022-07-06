@@ -11,7 +11,7 @@ public class UserService {
 	
 	//필드
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	//생성자
 	
 	//메소드-gs

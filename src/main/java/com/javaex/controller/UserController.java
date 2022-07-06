@@ -18,7 +18,7 @@ public class UserController {
 	
 	//필드
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
 	
 	//회원가입
