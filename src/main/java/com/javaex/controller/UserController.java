@@ -64,7 +64,7 @@ public class UserController {
 		}else {//로그인실패
 			System.out.println("로그인 실패");
 			
-			return "redirect:/user/loginForm?result=fail";
+			return "redirect:/loginForm?result=fail";
 		}
 		
 		
@@ -75,7 +75,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		System.out.println("UserController>logout()");
 		
-		session.removeAttribute("authUSer");
+		session.removeAttribute("authUser");
 		session.invalidate();
 		
 		return "redirect:/main";
