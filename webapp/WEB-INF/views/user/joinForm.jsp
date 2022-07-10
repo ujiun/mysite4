@@ -133,7 +133,7 @@ $("#join-Form").on("submit", function(){
 		return false;
 	}
 	
-	if(id == "" || id == null){
+	if(password == "" || password == null){
 		alert("패스워드를 입력해주세요");
 		return false;
 	}

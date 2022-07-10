@@ -14,10 +14,24 @@
 	
 	<select id="selectList" resultType="com.javaex.vo.GalleryVo">
 		<![CDATA[
-			select  g.saveName,
+			select  g.no,
+					g.saveName,
        				u.name userName
 			from gallery g, users u
 			where g.user_no = u.no
+		]]>
+	
+	</select>
+	
+	<select id="selectImg" parameterType="int" resultType="com.javaex.vo.GalleryVo">
+		<![CDATA[
+			select  g.no,
+       			    g.saveName,
+      			    g.user_no userNo,
+      			    g.content
+			from gallery g, users u
+			where g.user_no = u.no
+			and g.no = #{no}
 		]]>
 	
 	</select>

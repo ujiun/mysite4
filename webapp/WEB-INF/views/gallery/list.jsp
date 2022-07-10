@@ -58,7 +58,7 @@
 						<!-- 이미지반복영역 -->
 						<c:forEach items="${galleryList }" var="galleryVo">
 							<li>
-								<div class="view" >
+								<div class="view" data-no="${galleryVo.no }">
 									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName }" >
 									<div class="imgWriter">작성자: <strong>${galleryVo.userName }</strong></div>
 								</div>
@@ -131,18 +131,19 @@
 					</div>
 					
 					<div class="formgroup">
-						<p id="viewModelContent"></p>
+						<p id="viewModelContent" ></p>
 					</div>
 					
 				</div>
-				<form method="" action="">
+		    <!-- <form method="" action=""> -->
 					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button  type="button" class="btn btn-danger" id="btnDel">삭제</button>
-				</div>
+						<input type="text" name="no" value="">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button  type="button" class="btn btn-danger" id="btnDel">삭제</button>
+					</div>
 				
 				
-				</form>
+			<!-- </form> -->
 				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -155,8 +156,6 @@
 
 $(document).ready(function(){
 	console.log("jquery로 요청");
-	
-
 
 });
 
@@ -171,18 +170,84 @@ $("#btnImgUpload").on("click", function(){
 });
 
 
+
+
 /* 이미지 클릭했을 때*/
-$(".imgItem").on("click", function(){
+$("#viewArea").on("click", ".view", function(){
 	console.log("이미지 클릭");
-		
-	
-	
+
+	var $this = $(this);
+	var no = $this.data("no");
 	
 	
 	//모달창 띄우기
 	$("#viewModal").modal("show");
 	
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath }/gallery/getImg",		
+		type : "post",
+		//contentType : "application/json",
+		data : {no},
+
+		dataType : "json",
+		success : function(galleryVo){
+			/*성공시 처리해야될 코드 작성*/
+			
+			var src = "${pageContext.request.contextPath }/upload/" + galleryVo.saveName;
+			var content = galleryVo.content;
+			var no = galleryVo.no;
+			var userNo = galleryVo.userNo;
+			
+			
+			$("#viewModelImg").attr("src", src);
+			$("#viewModelContent").html(content);
+			$(".modal-footer > [name='no']").val(no);
+			
+			
+			if(userNo == "${authUser.no}") {
+				$("#btnDel").show();
+			} else {
+				$("#btnDel").hide();
+			}
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	
 });
+
+
+/* 삭제버튼을 눌렀을 때 */
+$("#btnDel").on("click", function(){
+	console.log("삭제버튼클릭");
+	
+	var no = $(".modal-footer > [name='no']").val();
+	
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath }/gallery/deleteImg",		
+		type : "post",
+		//contentType : "application/json",
+		data : {no},
+
+		dataType : "json",
+		success : function(galleryVo){
+			/*성공시 처리해야될 코드 작성*/
+			
+		
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	
+});
+
+
 
 
 </script>

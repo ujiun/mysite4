@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.GalleryDao;
@@ -78,7 +80,12 @@ public class GalleryService {
 		
 	}
 	
-	
+	//getImg
+	public GalleryVo getImg(int no) {
+		System.out.println("GalleryService>getImg");
+		
+		return galleryDao.getImg(no);
+	}
 	
 	
 }

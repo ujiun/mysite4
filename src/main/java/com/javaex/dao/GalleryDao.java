@@ -32,4 +32,11 @@ public class GalleryDao {
 		return galleryList;
 	}
 
+	//getImg
+	public GalleryVo getImg(int no) {
+		System.out.println("GalleryDao>getImg");
+
+		return sqlSession.selectOne("gallery.selectImg", no);
+	}
+	
 }

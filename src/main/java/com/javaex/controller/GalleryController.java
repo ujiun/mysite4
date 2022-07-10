@@ -22,14 +22,14 @@ import com.javaex.vo.UserVo;
 public class GalleryController {
 	
 	@Autowired
-	private GalleryService galleryservice;
+	private GalleryService galleryService;
 	
 	//리스트
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String list(Model model) {
 		System.out.println("GalleryController>list");
 		
-		List<GalleryVo> galleryList = galleryservice.getList();
+		List<GalleryVo> galleryList = galleryService.getList();
 		
 		model.addAttribute("galleryList", galleryList);
 		
@@ -45,12 +45,28 @@ public class GalleryController {
 		
 		int userNo = authUser.getNo();
 		
-		galleryservice.save(file, userNo, content);
+		galleryService.save(file, userNo, content);
 		
 		
 		return "redirect:list";
 	}
 
+	//getImg
+	@ResponseBody
+	@RequestMapping(value = "/getImg", method = {RequestMethod.GET, RequestMethod.POST} )
+	public GalleryVo getImg(@RequestParam("no") int no) {
+		System.out.println("GalleryController>getImg");
+		
+		return galleryService.getImg(no);
+	}
+	
+	//deleteImg
+	@RequestMapping(value = "/deleteImg", method = {RequestMethod.GET, RequestMethod.POST})
+	public void deleteImg(@RequestParam("no") int no) {
+		System.out.println("GalleryController>deleteImg");
+		
+		
+	}
 	
 	
 }
