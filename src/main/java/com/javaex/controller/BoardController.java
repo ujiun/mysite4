@@ -23,7 +23,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	//생성자
+	//생성자 
 	//메소드-gs
 	//메소드-일반
 	
@@ -40,7 +40,7 @@ public class BoardController {
 	}
 	
 	
-	//list
+	//list 
 	@RequestMapping(value="/list", method= { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model, @RequestParam(value = "keyword", required=false, defaultValue="") String keyword) {
 		System.out.println("BoardController>list()");
