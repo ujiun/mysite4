@@ -19,7 +19,7 @@ import com.javaex.vo.BoardVo;
 @RequestMapping(value="/board")
 public class BoardController {
 	//필드
-	
+	 
 	@Autowired
 	private BoardService boardService;
 	
