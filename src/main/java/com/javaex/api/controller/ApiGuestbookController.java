@@ -19,7 +19,7 @@ public class ApiGuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 	 
-	
+	 
 	//방명록 첫페이지(*등록폼+리스트(ajax))
 	@RequestMapping(value = "/api/guestbook/addList", method = {RequestMethod.GET, RequestMethod.POST})
 	public String addList() {
