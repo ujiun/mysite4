@@ -31,7 +31,7 @@ public class BoardController {
 	@RequestMapping(value="/list4", method= { RequestMethod.GET, RequestMethod.POST })
 	public String list4(Model model, @RequestParam(value="crtPage", required = false, defaultValue="1") int crtPage) {
 		System.out.println("BoardController>list4()");
-		
+		 
 		Map<String, Object> pMap = boardService.getList4(crtPage);
 		
 		model.addAttribute("pMap", pMap);
